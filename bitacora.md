@@ -46,3 +46,26 @@
 - **Patrones:** con cada cliente se repite la secuencia; solo cambian los datos. Se repite comprobar, y si falla anotar el motivo y terminar.
 - **Abstracción:** Color de la bicicleta, método de pago, la devolución.
 - **Algoritmo final:** la versión 2.
+
+## 6. Cotización en PSeInt
+
+### Entrada, proceso y salida
+
+| Descripción |
+| **Entrada** | `nombreCliente`: nombre del cliente. `horas`: horas de alquiler. |
+| **Proceso** | `total = horas * precioPorHora`, `precioPorHora` = 10000 . |
+| **Salida** | Mensaje: "Bienvenido a rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". |
+
+### Casos de prueba
+
+| # | Entrada (nombre, horas)              | Resultado esperado            | Resultado obtenido |
+| 1 | Sebastian Garcia, 1                  | 1 × 10000                      = $10000            | |
+| 2 | Pepito, 3                            | 3 × 10000                      = $30000            | |
+| 3 | Antonio, 8                           | 8 × 10000                      = $80000            | |
+
+### Horas en 0 o negativas
+
+Si la persona de taquilla escribe 0 o número negativo, el calcula igual:
+
+- `0`  horas, muestra un total de $0.
+- `-2` horas, muestra un total negativo (-$20000).
