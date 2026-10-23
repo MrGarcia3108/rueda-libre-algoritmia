@@ -4,33 +4,46 @@
 
 1. El cliente llega al local.
 2. Pedir el documento.
-3. Preguntar qué bicicleta quiere.
-4. Consultar si en el inventario esta la bicicleta solicitada
-5. Revisar la bicicleta.
-6. Cobrar.
-7. Entregar la bicicleta.
-8. Fin
+3. si no lo tiene, ir al paso 11
+4. Preguntar qué bicicleta quiere.
+5. Consultar si en el inventario esta la bicicleta solicitada
+6. si no hay en el inventario, ofrecerle otra al cliente
+7. si el cliente no elige ninguna bicicleta, ir al paso 11
+8. Revisar la bicicleta 
+9. Cobrar.
+10. Entregar la bicicleta.
+11. decir el porque no se alquilo la bicicleta y despedir al cliente
+12. Fin
 
 ## 2. Prueba con un compañero
+
+### Errores:
+
+1. No le ofresco el candado ni el casco al cleinte
+2. En la revision de la bicicleta, el cliente no este presente
+3. Que pasa si el cliente quiere reservar una bicicleta cuando este en el inventario
+4. Saludar al cliente
 
 ## 3. Versión 2 
 
 **Entradas:** cliente, documento, inventario y tabla de tarifas.
 **Salida:** el cliente sale con bicicleta, casco, o sale sin alquiler y queda anotado el motivo.
 
-1. Saludar.
-2. Pida el documento original. Si no lo tiene, decir "No se puede alquilar sin documento", salta al paso 12.
-3. Anote nombre y número del documento.
-4. Pregunte el tipo de bicicleta (urbana, montaña, eléctrica), el plan (1 hora, 4 horas, día completo), talla de casco (S, M o L).
-5. Consulte el inventario. Si hay una bicicleta del tipo elegido, vaya al paso 7.
-6. Si no hay, ofrezca otro tipo. Si elige otro, guardalo y siga al paso 7. Si no elige ninguno, decir "sin disponibilidad", salta al paso 12.
-7. Revisar la bicicleta frente al cliente: frenos, llantas y cadena en su lugar. Si falla algo, decir "fuera de servicio", vuelva al paso 5.
-8. Diga el valor según la tabla de tarifas y cóbrelo. Si no se completa, decir "pago no completado", salta al paso 12.
-9. Entregue el casco con la talla.
-10. Verifique: bicicleta, casco, y documento devuelto.
-11. Decir "bicicleta alquilada", y diga "Disfrute su recorrido". saltar al paso 13.
-12. Decir el motivo de no alquiler y diga "Gracias por visitarnos".
-13. Fin.
+1. un cliente llega
+2. Saludar.
+3. Pida el documento original. Si no lo tiene, decir "No se puede alquilar sin documento", salta al paso 12.
+4. Si el cliente viene con una reserva, ir directo al paso 7
+5. Anote nombre y número del documento.
+6. Pregunte el tipo de bicicleta (urbana, montaña, eléctrica), el plan (1 hora, 4 horas, día completo), talla de casco (S, M o L).
+7. Consulte el inventario. Si hay una bicicleta del tipo elegido, vaya al paso 7.
+8. Si no hay, ofrezca otro tipo. Si elige otro, guardalo y siga al paso 7, Si hay ninguna bicicleta de la eleccion del cliente, ofrecer una reserva para cuando una bicicleta este en el inventario, e ir denuevo al paso 1 cuando vuelva, Si no elige ninguno, decir "sin disponibilidad", salta al paso 12.
+9. Revisar la bicicleta frente al cliente: frenos, llantas y cadena en su lugar. Si falla algo, decir "fuera de servicio", vuelva al paso 5.
+10. Diga el valor según la tabla de tarifas y cóbrelo. Si no se completa, decir "pago no completado", salta al paso 12.
+11. Entregue el casco con la talla.
+12. Verifique: bicicleta, casco y el candado, y documento devuelto.
+13. Decir "bicicleta alquilada", y diga "Disfrute su recorrido". saltar al paso 13.
+14. Decir el motivo de no alquiler y diga "Gracias por visitarnos".
+15. Fin.
 
 ## 4. Características del algoritmo
 
@@ -108,3 +121,13 @@ Salida, nombreRecorrido: Sabores de Barrio, total: 240000 anticipo: 72000, saldo
 8. proceso: anticipo = redon(total*porcentaje)
 9. proceso: saldo = total-anticipo
 10. Salida: nombreRecorrido, total, anticipo, saldo
+
+# Bitácora: descomposición del problema
+
+1	Valor del alquiler	bicicletas, horas, precio por bicicleta-hora
+2	Valor del recorrido	personas, precio del recorrido por persona
+3	Subtotal	alquiler + recorrido
+4	Aporte voluntario	subtotal × 0,10
+5	Total	subtotal + aporte
+6	Valor exacto por persona	total / personas
+7	Valor por persona redondeado a la centena	valor exacto
