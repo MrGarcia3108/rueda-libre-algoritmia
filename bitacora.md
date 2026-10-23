@@ -52,10 +52,9 @@
 ### Entrada, proceso y salida
 
 | Descripción |
-| **Entrada** | `nombreCliente`: nombre del cliente. `horas`: horas de alquiler. |
-| **Proceso** | `total = horas * precioPorHora`, `precioPorHora` = 10000 . |
-| **Salida** | Mensaje: "Bienvenido a rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". |
-
+| **Entrada** | `nombreCliente`: nombre del cliente. `horas`: horas de alquiler. 
+| **Proceso** | `total = horas * precioPorHora`, `precioPorHora` = 10000 . 
+| **Salida** | Mensaje: "Bienvenido a rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". 
 ### Casos de prueba
 
 | # | Entrada (nombre, horas)              | Resultado esperado            | Resultado obtenido |
@@ -69,3 +68,43 @@ Si la persona de taquilla escribe 0 o número negativo, el calcula igual:
 
 - `0`  horas, muestra un total de $0.
 - `-2` horas, muestra un total negativo (-$20000).
+
+## Cotización de recorrido
+
+## Entrada, proceso y salida
+
+porcentaje = 0.30
+precioPorPersona = 60000
+
+| **Entrada** | `nombreRecorrido`, `precioPorPersona`, `cantidadPersonas` 
+| **Proceso** | `total = precioPorPersona * cantidadPersonas`; `anticipo = redon(total * porcentaje)`; `saldo = total - anticipo`
+| **Salida** | RecorNombre del Recorrido, Valor total a pagar, Anticipo (30%), Saldo pendiente a pagar
+
+## Prueba de escritorio
+					
+porcentaje = 0.30
+precioPorPersona = 60000					
+Leer nombreRecorrido:	Sabores de Barrio								
+Leer cantidadPersonas:	4			
+total = precioPorPersona * cantidadPersonas:	240000		
+anticipo = redon(total * porcentaje):           72000	
+saldo = total - anticipo:                  	    168000
+Salida, nombreRecorrido: Sabores de Barrio, total: 240000 anticipo: 72000, saldo: 168000
+
+## Ejecución en PSeInt
+
+| Entrada                     | Obtenido                                   |
+| Sabores de Barrio, 60000, 4 | Total 240000, anticipo 72000, saldo 168000 | 
+
+## Diagrama de flujo
+
+1. Inicio
+2. Definir: nombreRecorrido, precioPorPersona, cantidadPersonas, porcentaje, total, anticipio, saldo
+3. precioPorPersona = 0.30, precioPorPersona = 60000
+4. Leer
+5. Entradas nombreRecorrido, cantidadPersonas
+6. leer
+7. proceso: total = precioPorPersona*cantidadPersonas
+8. proceso: anticipo = redon(total*porcentaje)
+9. proceso: saldo = total-anticipo
+10. Salida: nombreRecorrido, total, anticipo, saldo
