@@ -1,36 +1,49 @@
 # Bitácora: alquilar de una bicicleta
 
-## 1. Versión 1 
+## 1. Versión 0.1 
 
 1. El cliente llega al local.
 2. Pedir el documento.
-3. Preguntar qué bicicleta quiere.
-4. Consultar si en el inventario esta la bicicleta solicitada
-5. Revisar la bicicleta.
-6. Cobrar.
-7. Entregar la bicicleta.
-8. Fin
+3. si no lo tiene, ir al paso 11
+4. Preguntar qué bicicleta quiere.
+5. Consultar si en el inventario esta la bicicleta solicitada
+6. si no hay en el inventario, ofrecerle otra al cliente
+7. si el cliente no elige ninguna bicicleta, ir al paso 11
+8. Revisar la bicicleta 
+9. Cobrar.
+10. Entregar la bicicleta.
+11. decir el porque no se alquilo la bicicleta y despedir al cliente
+12. Fin
 
 ## 2. Prueba con un compañero
 
-## 3. Versión 2 
+### Errores:
+
+1. No le ofresco el candado ni el casco al cleinte
+2. En la revision de la bicicleta, el cliente no este presente
+3. Que pasa si el cliente quiere reservar una bicicleta cuando este en el inventario
+4. Saludar al cliente
+
+## 3. Versión 0.2 
 
 **Entradas:** cliente, documento, inventario y tabla de tarifas.
 **Salida:** el cliente sale con bicicleta, casco, o sale sin alquiler y queda anotado el motivo.
 
-1. Saludar.
-2. Pida el documento original. Si no lo tiene, decir "No se puede alquilar sin documento", salta al paso 12.
-3. Anote nombre y número del documento.
-4. Pregunte el tipo de bicicleta (urbana, montaña, eléctrica), el plan (1 hora, 4 horas, día completo), talla de casco (S, M o L).
-5. Consulte el inventario. Si hay una bicicleta del tipo elegido, vaya al paso 7.
-6. Si no hay, ofrezca otro tipo. Si elige otro, guardalo y siga al paso 7. Si no elige ninguno, decir "sin disponibilidad", salta al paso 12.
-7. Revisar la bicicleta frente al cliente: frenos, llantas y cadena en su lugar. Si falla algo, decir "fuera de servicio", vuelva al paso 5.
-8. Diga el valor según la tabla de tarifas y cóbrelo. Si no se completa, decir "pago no completado", salta al paso 12.
-9. Entregue el casco con la talla.
-10. Verifique: bicicleta, casco, y documento devuelto.
-11. Decir "bicicleta alquilada", y diga "Disfrute su recorrido". saltar al paso 13.
-12. Decir el motivo de no alquiler y diga "Gracias por visitarnos".
-13. Fin.
+1. un cliente llega
+2. Saludar.
+3. Pida el documento original. Si no lo tiene, decir "No se puede alquilar sin documento", salta al paso 12.
+4. Si el cliente viene con una reserva, ir directo al paso 7
+5. Anote nombre y número del documento.
+6. Pregunte el tipo de bicicleta (urbana, montaña, eléctrica), el plan (1 hora, 4 horas, día completo), talla de casco (S, M o L).
+7. Consulte el inventario. Si hay una bicicleta del tipo elegido, vaya al paso 7.
+8. Si no hay, ofrezca otro tipo. Si elige otro, guardalo y siga al paso 7, Si hay ninguna bicicleta de la eleccion del cliente, ofrecer una reserva para cuando una bicicleta este en el inventario, e ir denuevo al paso 1 cuando vuelva, Si no elige ninguno, decir "sin disponibilidad", salta al paso 12.
+9. Revisar la bicicleta frente al cliente: frenos, llantas y cadena en su lugar. Si falla algo, decir "fuera de servicio", vuelva al paso 5.
+10. Diga el valor según la tabla de tarifas y cóbrelo. Si no se completa, decir "pago no completado", salta al paso 12.
+11. Entregue el casco con la talla.
+12. Verifique: bicicleta, casco y el candado, y documento devuelto.
+13. Decir "bicicleta alquilada", y diga "Disfrute su recorrido". saltar al paso 13.
+14. Decir el motivo de no alquiler y diga "Gracias por visitarnos".
+15. Fin.
 
 ## 4. Características del algoritmo
 
@@ -49,23 +62,95 @@
 
 ## 6. Cotización en PSeInt
 
-### Entrada, proceso y salida
+# Entrada, proceso y salida (algoritmo 1)
 
-| Descripción |
-| **Entrada** | `nombreCliente`: nombre del cliente. `horas`: horas de alquiler. |
-| **Proceso** | `total = horas * precioPorHora`, `precioPorHora` = 10000 . |
-| **Salida** | Mensaje: "Bienvenido a rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". |
+| **Entrada** | `nombreCliente`: nombre del cliente. `horas`: horas de alquiler. 
+| **Proceso** | `total = horas * precioPorHora`, `precioPorHora` = 10000 . 
+| **Salida** | Mensaje: "Bienvenido a rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". 
 
-### Casos de prueba
+## Casos de prueba
 
-| # | Entrada (nombre, horas)              | Resultado esperado            | Resultado obtenido |
-| 1 | Sebastian Garcia, 1                  | 1 × 10000                      = $10000            | |
-| 2 | Pepito, 3                            | 3 × 10000                      = $30000            | |
-| 3 | Antonio, 8                           | 8 × 10000                      = $80000            | |
+| | Descripción |
+|---|---|
+| **Entrada** | `nombreCliente` (Caracter): nombre del cliente. `horas` (Entero): horas de alquiler. |
+| **Proceso** | `total <- horas * precioPorHora`, con `precioPorHora` = 10000 (Entero). |
+| **Salida** | Mensaje: "Bienvenido a Rueda libre [nombre], tu alquiler de [horas] horas cuesta un total de: $[total]". |
 
-### Horas en 0 o negativas
+## Horas en 0 o negativas
 
 Si la persona de taquilla escribe 0 o número negativo, el calcula igual:
 
 - `0`  horas, muestra un total de $0.
 - `-2` horas, muestra un total negativo (-$20000).
+
+# Entrada, proceso y salida (algoritmo 2)
+
+porcentaje = 0.30
+precioPorPersona = 60000
+
+| **Entrada** | `nombreRecorrido`, `precioPorPersona`, `cantidadPersonas` 
+| **Proceso** | `total = precioPorPersona * cantidadPersonas`; `anticipo = redon(total * porcentaje)`; `saldo = total - anticipo`
+| **Salida** | RecorNombre del Recorrido, Valor total a pagar, Anticipo (30%), Saldo pendiente a pagar
+
+## Prueba de escritorio
+					
+| Instrucción | porcentaje | precioPorPersona | nombreRecorrido | cantidadPersonas | total | anticipo | saldo |
+|---|---|---|---|---|---|---|---|
+| `porcentaje <- 0.30` | 0.30 | | | | | | |
+| `precioPorPersona <- 60000` | 0.30 | 60000 | | | | | |
+| `Leer nombreRecorrido` | 0.30 | 60000 | Sabores de Barrio | | | | |
+| `Leer cantidadPersonas` | 0.30 | 60000 | Sabores de Barrio | 4 | | | |
+| `total <- precioPorPersona * cantidadPersonas` | 0.30 | 60000 | Sabores de Barrio | 4 | 240000 | | |
+| `anticipo <- redon(total * porcentaje)` | 0.30 | 60000 | Sabores de Barrio | 4 | 240000 | 72000 | |
+| `saldo <- total - anticipo` | 0.30 | 60000 | Sabores de Barrio | 4 | 240000 | 72000 | 168000 |
+| Salida (`Escribir`) | 0.30 | 60000 | Sabores de Barrio | 4 | 240000 | 72000 | 168000 |
+
+## Ejecución en PSeInt
+
+| Entrada                     | Obtenido                                   |
+| Sabores de Barrio, 60000, 4 | Total 240000, anticipo 72000, saldo 168000 | 
+
+## Diagrama de flujo
+
+1. Inicio
+2. Definir: nombreRecorrido, precioPorPersona, cantidadPersonas, porcentaje, total, anticipio, saldo
+3. precioPorPersona = 0.30, precioPorPersona = 60000
+4. Leer
+5. Entradas nombreRecorrido, cantidadPersonas
+6. leer
+7. proceso: total = precioPorPersona*cantidadPersonas
+8. proceso: anticipo = redon(total*porcentaje)
+9. proceso: saldo = total-anticipo.
+10. Salida: nombreRecorrido, total, anticipo, saldo
+
+# Cuenta de grupo (algoritmo 03)
+
+## Descomposición
+
+1. Valor del alquiler `bicicletas * horas * precioPorHora` |
+2. Valor del recorrido `precioRecorrido * personas` |
+3. Subtotal `alquiler + recorrido` |
+4. Aporte voluntario `redon(subtotal * 0.10)` |
+5. Total `subtotal + aporte` |
+6. Valor por persona `trunc((total + centena * personas - 1) / (centena * personas)) * centena`
+
+**Entradas:** bicicletas, horas, precio recorrido por persona, personas.
+**Constantes:** precio por hora (10000), porcentaje de aporte (0.10), centena (100).
+**Orden:** cada cálculo usa los resultados así no se puede alterar.
+
+## Redondeo hacia arriba a la centena
+
+Fórmula: `valorPorPersona = trunc((total + centena * personas - 1) / (centena * personas)) * centena`
+
+Por qué funciona:
+- `trunc` corta los decimales, es decir, redondea hacia abajo. Sirve para redondear hacia abajo, pero necesito hacia arriba.
+- Aquí el divisor es `100 * personas`: dividir el total entre `personas` y luego entre 100 es lo mismo que dividirlo entre `100 * personas`. El resultado es la cantidad de centenas que debe pagar cada persona, y multiplicar por 100 las convierte en pesos.
+- Ejemplo (4 personas, total 363000): (363000 + 399) / 400 = 908,49, utilizando `trunc` da 908 → 908 × 100 = **90800**. El valor exacto era 90750, así que se cobra un poco más.
+
+## Pruebas
+
+| # | Caso | Alquiler | Recorrido | Subtotal | Aporte | Total | Exacto por persona | Esperado por persona |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 3 personas, 3 bicis, 2 h, Río y Parques (45000) | 60000 | 135000 | 195000 | 19500 | 214500 | 71500 | 71500 |
+| 2 | 4 personas, 3 bicis, 3 h, Sabores de Barrio (60000) | 90000 | 240000 | 330000 | 33000 | 363000 | 90750 | 90800 |
+| 3 (mío) | 7 personas, 4 bicis, 2 h, Río y Parques (45000) | 80000 | 315000 | 395000 | 39500 | 434500 | 62071,43 | 62100 |
